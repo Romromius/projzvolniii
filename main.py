@@ -45,7 +45,7 @@ class Library(QMainWindow):
         self.results.addItems([i[0] for i in raw])
 
     def fetch(self):
-        threading.Thread(target=self.bep).start()
+        self.bep()
 
         return
         raw = self.cur.execute('''SELECT * FROM coffee''')
