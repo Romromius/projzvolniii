@@ -33,9 +33,9 @@ class Library(QMainWindow):
         # ~ Коннекторы ~
 
         self.results.currentItemChanged.connect(self.fetch)
-        self.update_coffe()
         winsound.Beep(3000, 50)
         winsound.Beep(4000, 50)
+        self.update_coffe()
 
     def bep(self):
         winsound.Beep(1000, 100)
@@ -46,9 +46,8 @@ class Library(QMainWindow):
 
     def fetch(self):
         self.bep()
-
-        return
-        raw = self.cur.execute('''SELECT * FROM coffee''')
+        raw = self.cur.execute(f'SELECT * FROM menu WHERE sort = ?',
+                               (self.results.currentItem().text(), )).fetchone()
         self.info.setText(raw)
 
 
